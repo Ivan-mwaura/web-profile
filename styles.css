@@ -1,0 +1,75 @@
+.hero-section{
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+ 
+}
+.second-hero-section{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-self: center;
+    border: 1px solid black;
+    background-color: white;
+    width: 350px;
+    border-radius: 5%;
+}
+
+.profile{
+    display: flex;
+    justify-content: center;
+
+    flex-direction: column;
+    align-items: center;
+
+}
+.profile-picture{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 20px;   
+    object-fit: cover;
+}
+.profile-details{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+table{
+    border-collapse: collapse;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+table td{
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.content{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+
+button{
+    width: 150px;
+    height: 60px;
+    border-radius: 5px;
+    border: none;
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+#visitCount {
+    color: white;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Users Preferences</title>
+    <link rel="stylesheet" href="./styles.css"/>
+
+</head>
+<body onload="Initialize()">
+
+<div class="hero-section">
+
+<div class="second-hero-section">
+
+
+    <div class="profile">'
+        <img src="./images/profile.jpeg" alt="profile picture" class="profile-picture">
+        
+    </div>
+    <div class="profile-details">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td>Evans Gachanja Mwaura</td>
+                </tr>
+                <tr>
+                    <td>Registration Number</td>
+                    <td>SCT221-0110/2021</td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<div class="content">
+    <ul id="storedItems" style="color: white"></ul>
+    <button type="button" onclick="setColorPreference('red')">Red</button>
+    <button type="button" onclick="setColorPreference('green')">Green</button>
+    <button type="button" onclick="setColorPreference('blue')">Blue</button>
+    <div id="visitCount"></div>.
+    <br/>
+    <button type="button" onclick="removeCount()">remove count</button>
+    <button type="button" onclick="clearAll()">clear all</button>
+</div>
+
+
+    
+    <script type="text/javascript">
+        const localStorage = window.localStorage;
+
+        const Initialize = () => {
+            if(localStorage) { 
+                const count = localStorage.getItem("visitCount") || 0;  
+                const newCount = parseInt(count) + 1;
+                localStorage.setItem("visitCount",newCount);
+                updateDOM();
+            }
+        };
+
+        const updateDOM = () => {
+            const count = localStorage.getItem("visitCount") || 0; 
+            const storedPreferences = localStorage.getItem("preference");       //get stored preference from local storage
+            const preference = storedPreferences ? JSON.parse(storedPreferences) : {} ;     //if storedPreferences exist, convert the string to preference JSON object else initialize with empty object {}
+            document.getElementById("visitCount").innerHTML = `visit count = ${count}`;
+            document.body.style.background = preference.color || "white";       //update body based on the body background based on color stored in the preference if none initialize with white
+            showAllStoredKeyValues();
+        };
+
+        const setColorPreference = (color) => {     //takes color as parameter
+            const preference = {color};     //create JSON object
+            localStorage.setItem("preference",JSON.stringify(preference));      //convert JSON object to string then store it in local storage
+            updateDOM();
+        };
+
+        const removeCount = () => {
+            localStorage.removeItem("visitCount");
+            updateDOM();
+        };
+
+        const clearAll = () => {
+            localStorage.clear();
+            updateDOM();
+        };
+
+        const showAllStoredKeyValues = () => {
+            console.log(`we have ${localStorage.length} values`)
+            const ul = document.getElementById("storedItems");
+            ul.innerHTML = "";
+
+            for(let index = 0; index < localStorage.length; index++){
+                const key = localStorage.key(index);
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(`${key} = ${localStorage.getItem(key)}`));
+                ul.appendChild(li);
+            }
+        };
+    </script>
+
+    <div>
+
+    </div>
+</body>
+</html>
